@@ -1,0 +1,28 @@
+export default {
+  discovery: {
+    title: '先問清楚',
+    open: '先問清楚',
+    close: '關閉',
+    asking: '還有幾件事沒說清',
+    assumptions: '我準備替你猜的（請核對）',
+    answerPlaceholder: '回答上面的問題，或說「夠了」',
+    submit: '送出回答',
+    buildSpec: '整理成規格卡',
+    specTitle: '需求規格卡',
+    specHint: '逐條核對，不對就改；全部打勾後才能產生提示詞',
+    sourceSaid: '我說的',
+    sourceConfirmed: '我確認的',
+    sourcePending: '仍待定',
+    confirmed: '已確認',
+    generate: '按規格卡產生',
+    skip: '不問了，直接出結果',
+    skipConfirm: '跳過代表下面這些會由模型自己決定：',
+    emptySpec: '規格卡還是空的',
+    notAllConfirmed: '還有條目沒打勾',
+    round: '第 {n} 輪',
+    error: '這一步沒成，可以重試或跳過',
+    why: '為什麼問',
+    rejectTitle: '結果不對？先說是哪一類',
+    rejectNote: '具體哪裡不對',
+  }
+} as const;
