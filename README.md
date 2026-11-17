@@ -1,5 +1,24 @@
 # Prompt Optimizer 🚀
 
+> **This is an unofficial fork of [linshenkx/prompt-optimizer](https://github.com/linshenkx/prompt-optimizer). It adds an optional "clarify first" step.**
+> Everything below "Project Introduction" is the **upstream documentation**. Links to the upstream website, hosted services, badges and sponsorship are not services provided by this fork.
+
+## 🧭 About this fork
+
+| | |
+|---|---|
+| **Upstream** | Rewrites a prompt (clear or vague, complete or partial) into a more complete, structured form using built-in templates, then tests, compares, evaluates and saves it. Web / desktop / Chrome extension / Docker / MCP, local-first, works with a local Ollama. |
+| **The gap we address** | Missing information is filled in **by the model's own defaults**: no questions asked, assumptions not shown, nothing for the user to confirm. Even a fully specified request can be re-expanded or reworded by a fixed framework at the last step. |
+| **What we added** | An **optional** pre-step: dynamic clarifying questions → explicit assumptions → a spec card confirmed item by item → a "strict formatting" template that forbids adding or changing words → write back to the spec card when a result is rejected. "Skip, just give me the result" is available at every turn and leaves the original flow untouched. |
+
+Why optional? Mandatory questionnaires are why this kind of tool gets abandoned. People who just want a result should not be blocked; people who want precision should be able to state it first. **No part of the upstream flow was removed.**
+
+Want to keep improving it? Real-model validation, persisting/reusing spec cards, bringing clarification into image mode, adaptive round limits, more model adapters and upstream sync are all open. See [FORK-NOTES.md](FORK-NOTES.md) (Chinese, with file-level pointers), and the [中文说明](README.zh-CN.md#-关于这个分支).
+
+**License & thanks:** upstream is Copyright (C) 2025 linshenkx, AGPL-3.0-only; modifications here are Copyright (C) 2026 liuzhao1219 and remain **AGPL-3.0-only** — no relicensing, no closed-source derivatives, and network use must offer the Corresponding Source (section 13). See [NOTICE.md](NOTICE.md) and [LICENSE](LICENSE). Thanks to linshenkx and all upstream contributors. This fork is not affiliated with or endorsed by them.
+
+---
+
 <div align="center">
 
 English | [中文](README.zh-CN.md)

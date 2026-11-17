@@ -1,3 +1,5 @@
+<!-- Modified 2026-11-17 (need-discovery fork): optional clarify-first entry and drawer. See NOTICE.md. -->
+<!-- Modifications Copyright (C) 2026 liuzhao1219, AGPL-3.0-only. -->
 <template>
     <div
         class="basic-system-workspace"

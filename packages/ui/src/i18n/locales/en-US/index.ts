@@ -1,3 +1,5 @@
+// Modified 2026-11-17 (need-discovery fork): register discovery locale. See NOTICE.md.
+// Modifications Copyright (C) 2026 liuzhao1219, AGPL-3.0-only.
 import arena from './arena'
 import workspace from './workspace'
 import core from './core'

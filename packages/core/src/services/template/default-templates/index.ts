@@ -2,6 +2,9 @@
  * 默认模板统一导入
  * 
  * 🎯 极简设计：模板自身包含完整信息，无需额外配置
+ *
+ * Modified 2026-11-17 (need-discovery fork): register strict-spec-format template. See NOTICE.md.
+ * Modifications Copyright (C) 2026 liuzhao1219, AGPL-3.0-only.
  */
 
 // 导入所有模板

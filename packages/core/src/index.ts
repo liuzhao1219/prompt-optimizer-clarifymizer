@@ -1,6 +1,8 @@
 /*
  * Prompt Optimizer - AI提示词优化工具
  * Copyright (C) 2025 linshenkx
+ * Modified 2026-11-17 (need-discovery fork): export discovery types/service. See NOTICE.md.
+ * Modifications Copyright (C) 2026 liuzhao1219, AGPL-3.0-only.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
