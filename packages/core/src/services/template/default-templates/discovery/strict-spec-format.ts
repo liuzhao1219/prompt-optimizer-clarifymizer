@@ -7,8 +7,10 @@ import { Template } from '../../types';
  * 那些模板要求按固定章节写满、鼓励模型自行补全缺失上下文；
  * 本模板明令禁止新增任何信息、禁止改词、禁止填空。
  *
- * templateType 复用 'userOptimize'，这样它会自然出现在基础模式的模板下拉里，
- * 不需要改 types.ts 的联合类型和 zod enum。
+ * templateType 必须是 'optimize'：基础模式只列出该类型的模板。
+ * 若写成 'userOptimize'，useWorkspaceTemplateSelection 会判定该 ID 失效并
+ * 回退到「通用优化」，确认好的需求就会被通用模板重新补全，整个澄清流程白做。
+ * 复用现有类型，不需要改 types.ts 的联合类型和 zod enum。
  * 需要注册进 ALL_TEMPLATES（import + 一个数组条目），因为 optimizePrompt 按 id 查模板。
  *
  * 注意：不要写 {{targetPrompt}} 占位符。现有优化器会把用户原始输入自动附到模板末尾，
@@ -34,7 +36,7 @@ export const template: Template = {
     lastModified: 1767225600000,
     author: 'liuzhao1219',
     description: '按已确认规格卡排版，严禁新增、改词、填空或套固定章节',
-    templateType: 'userOptimize',
+    templateType: 'optimize',
     discoveryRole: 'strict-spec-format',
     language: 'zh'
   },
