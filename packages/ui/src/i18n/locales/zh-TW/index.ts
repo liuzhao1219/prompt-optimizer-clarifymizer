@@ -9,6 +9,7 @@ import testing from './testing'
 import context from './context'
 import image from './image'
 import errors from './errors'
+import discovery from './discovery'
 
 const messages = {
   ...arena,
@@ -22,6 +23,7 @@ const messages = {
   ...context,
   ...image,
   ...errors,
+  ...discovery,
 } as const;
 
 export default messages;

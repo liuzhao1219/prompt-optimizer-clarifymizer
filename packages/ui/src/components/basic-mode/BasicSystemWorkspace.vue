@@ -5,6 +5,16 @@
         data-testid="workspace"
         data-mode="basic-system"
     >
+        <!-- 需求澄清：可选的加号，不点就完全走原有流程 -->
+        <DiscoveryPanel
+            v-if="discoveryService"
+            v-model:show="showDiscovery"
+            :service="discoveryService"
+            :model-key="selectedOptimizeModelKeyModel"
+            :initial-input="promptModel"
+            @apply="handleDiscoveryApply"
+            @skip="handleDiscoverySkip"
+        />
         <div class="workspace-page-tools">
             <Teleport defer to="#compact-workspace-tools" :disabled="!isCompact">
             <WorkspaceUtilityMenu :compact="isCompact"
@@ -123,8 +133,25 @@
                             />
                         </template>
 
-                        <!-- 标题栏折叠按钮 -->
+                        <!-- 标题栏额外动作 -->
                         <template #header-extra>
+                            <NButton
+                                type="tertiary"
+                                size="small"
+                                ghost
+                                round
+                                data-testid="basic-system-discovery-open"
+                                :disabled="!promptModel.trim() || unwrappedLogicProps.isOptimizing"
+                                :title="t('discovery.specHint')"
+                                @click="showDiscovery = true"
+                            >
+                                <template #icon>
+                                    <NIcon :size="16">
+                                        <UiSparkles />
+                                    </NIcon>
+                                </template>
+                                <template v-if="!isCompact">{{ t('discovery.open') }}</template>
+                            </NButton>
                             <NButton
                                 type="tertiary"
                                 size="small"
@@ -483,7 +510,7 @@ import CompareRoleSummary from '../evaluation/CompareRoleSummary.vue'
 import TestWorkspaceToolbar from '../TestWorkspaceToolbar.vue'
 import TestVariantConfig from '../TestVariantConfig.vue'
 import { getTextModelSelectionConfigId } from '../../utils/text-model-selection'
-import { ChevronDown as UiChevronDown, ChevronUp as UiChevronUp, } from '@lucide/vue'
+import { ChevronDown as UiChevronDown, ChevronUp as UiChevronUp, Sparkles as UiSparkles, } from '@lucide/vue'
 import TestSourcePreview from '../common/TestSourcePreview.vue'
 import TestWorkspaceLayout from '../common/TestWorkspaceLayout.vue'
 import MobileTestResultHeader from '../common/MobileTestResultHeader.vue'
@@ -512,7 +539,8 @@ const {
  * - 使用 useEvaluationHandler 处理评估功能
  * - 内联基础模式工作区布局（与 BasicUserWorkspace 保持一致）
  */
-import { ref, reactive, computed, toRef, inject, onMounted, onUnmounted, watch, nextTick, type Ref } from 'vue'
+import { ref, shallowRef, reactive, computed, toRef, inject, onMounted, onUnmounted, watch, nextTick, type Ref } from 'vue'
+import DiscoveryPanel from '../discovery-mode/DiscoveryPanel.vue'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '../../composables/ui/useToast'
@@ -562,6 +590,8 @@ import type { AppServices } from '../../types/services'
 import type { IteratePayload } from '../../types/workspace'
 import {
   applyPatchOperationsToText,
+  DiscoveryService,
+  type IDiscoveryService,
   type ImageInputRef,
   type PatchOperation,
   type Template,
@@ -609,6 +639,32 @@ const logic = useBasicWorkspaceLogic({
     window.dispatchEvent(new CustomEvent('prompt-optimizer:history-refresh'))
   }
 })
+
+// ===== 需求澄清：可选的加号，不点就完全走原有流程 =====
+const showDiscovery = ref(false)
+const discoveryService = shallowRef<IDiscoveryService | null>(null)
+
+// 服务是异步注入的，拿到 llmService 后只创建一次，避免面板里会话被重建
+watch(
+  () => services.value?.llmService,
+  (llmService) => {
+    if (llmService && !discoveryService.value) {
+      discoveryService.value = new DiscoveryService(llmService)
+    }
+  },
+  { immediate: true },
+)
+
+/** 规格卡全部打勾后：回填输入框并切到「严格格式化」，由用户点原来的优化按钮出结果 */
+const handleDiscoveryApply = (specText: string): void => {
+  logic.prompt.value = specText
+  logic.selectedTemplateId.value = 'strict-spec-format'
+}
+
+/** 跳过：什么都不改，原有优化流程完全不受影响 */
+const handleDiscoverySkip = (): void => {
+  showDiscovery.value = false
+}
 
 // 模型选择
 const modelSelection = useWorkspaceModelSelection(services, session)

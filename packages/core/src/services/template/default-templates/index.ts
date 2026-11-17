@@ -151,6 +151,8 @@ import { imagePromptCompositionTemplate } from './image-prompt-composition';
 import { imagePromptCompositionTemplateEn } from './image-prompt-composition';
 import { imagePromptMigrationTemplate } from './image-prompt-migration';
 import { imagePromptMigrationTemplateEn } from './image-prompt-migration';
+// 需求澄清模式的收尾模板：只排版，不补内容
+import { template as strict_spec_format } from './discovery/strict-spec-format';
 
 // 简单的模板集合 - 模板自身已包含完整信息（id、name、language、type等）
 export const ALL_TEMPLATES = {
@@ -289,4 +291,6 @@ export const ALL_TEMPLATES = {
   imagePromptCompositionTemplateEn,
   imagePromptMigrationTemplate,
   imagePromptMigrationTemplateEn,
+  // 需求澄清模式的收尾模板
+  strict_spec_format,
 };

@@ -17,6 +17,10 @@
 
 // Core package entry point
 
+// 需求澄清模式（本地改造新增）
+export * from './services/discovery/types'
+export { DiscoveryService } from './services/discovery/service'
+
 export * from './services/arena/types'
 export * from './services/model/runtime-selection'
 

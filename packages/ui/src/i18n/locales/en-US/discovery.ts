@@ -1,0 +1,28 @@
+export default {
+  discovery: {
+    title: 'Clarify first',
+    open: 'Clarify first',
+    close: 'Close',
+    asking: 'A few things are still unclear',
+    assumptions: 'What I was about to guess (please check)',
+    answerPlaceholder: 'Answer the questions above, or say "enough"',
+    submit: 'Submit answer',
+    buildSpec: 'Build spec card',
+    specTitle: 'Requirement spec card',
+    specHint: 'Check each item, edit what is wrong; generate only after all are checked',
+    sourceSaid: 'You said',
+    sourceConfirmed: 'You confirmed',
+    sourcePending: 'Still open',
+    confirmed: 'Confirmed',
+    generate: 'Generate from spec',
+    skip: 'Skip, just give me a result',
+    skipConfirm: 'Skipping means the model decides these on its own:',
+    emptySpec: 'The spec card is empty',
+    notAllConfirmed: 'Some items are not checked yet',
+    round: 'Round {n}',
+    error: 'This step failed. Retry or skip',
+    why: 'Why this matters',
+    rejectTitle: 'Wrong result? Pick a reason first',
+    rejectNote: 'What exactly was wrong',
+  }
+} as const;
